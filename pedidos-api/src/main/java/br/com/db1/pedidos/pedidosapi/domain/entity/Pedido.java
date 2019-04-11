@@ -55,35 +55,25 @@ public class Pedido {
 	
 	
 	
-	//CONSTRUCTOR
-	public Pedido(String codigo, Cliente cliente, StatusPedido status, List<PedidoItem> itens,
-			List<Historico> historico, LocalDateTime statusData) {
-		//VERIFICADORES
+	public Pedido(String codigo, Cliente cliente) {
+		Checker.notNull(codigo, "codigo");
 		Checker.notNull(cliente, "cliente");
-		Checker.notNull(codigo, "código");
-		this.verificarClienteAtivo();
-		//
-		
-		
+
 		this.codigo = codigo;
 		this.cliente = cliente;
+		this.status = StatusPedido.ABERTO;
+		this.verificarClienteAtivo();
 		this.novoHistoricoStatus();
 	}
-	//
-	
-	
-	
-	
-	//METODOS
-	public void adicionarItem(PedidoItem pedido, Produto produto, Double quantidade) {
+		
+
+
+	public void adicionarItem(Produto produto, Double quantidade) {
 		this.verificarStatusPedidoParaAlterar();
 		
 		if (this.itens.size() == QUANTIDADE_MAXIMA_ITENS) {
 			throw new RuntimeException("Quantidade máxima de itens excedida.");
 		}
-		
-//		produto = pedido.getProduto();
-//		quantidade = pedido.getQuantidade();
 		
 		this.itens.add(new PedidoItem(this, produto, quantidade));
 	}

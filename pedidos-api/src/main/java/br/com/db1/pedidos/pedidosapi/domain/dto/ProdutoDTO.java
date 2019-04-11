@@ -19,6 +19,9 @@ public class ProdutoDTO {
 		this.nome = nome;
 		this.valor = valor;
 	}
+ 
+	
+
 
 	@Override
 	public int hashCode() {
@@ -40,7 +43,6 @@ public class ProdutoDTO {
 		return Objects.equals(codigo, other.codigo) && Objects.equals(nome, other.nome)
 				&& Objects.equals(valor, other.valor);
 	}
-
 
 	public String getCodigo() {
 		return codigo;

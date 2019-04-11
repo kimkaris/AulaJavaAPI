@@ -54,6 +54,11 @@ public class Produto {
 	
 	
 	//GETTERS
+	
+	public Long getId() {
+		return this.id;
+	}
+	
 	public String getCodigo() {
 		return this.codigo;
 	}

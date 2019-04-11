@@ -7,7 +7,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.db1.pedidos.pedidosapi.domain.dto.ClienteDTO;
 import br.com.db1.pedidos.pedidosapi.domain.dto.ProdutoDTO;
+import br.com.db1.pedidos.pedidosapi.domain.entity.Cliente;
 import br.com.db1.pedidos.pedidosapi.domain.entity.Produto;
 import br.com.db1.pedidos.pedidosapi.domain.entity.ProdutoStatus;
 import br.com.db1.pedidos.pedidosapi.repository.ProdutoRepository;
@@ -31,4 +33,15 @@ public class ProdutoService {
 		}
 		return produtos;
 	}
+	
+	public ProdutoDTO salvar (ProdutoDTO dto) {
+		Produto produto = new Produto(dto.getCodigo(), dto.getNome(), dto.getValor());
+		Produto produtoSalvo = produtoRepository.save(produto);
+		return this.produtoToDto(produtoSalvo);
+	}
+	
+	private ProdutoDTO produtoToDto (Produto produto) {
+		return new ProdutoDTO(produto.getCodigo(), produto.getNome(), produto.getValor());
+	}
+	
 }

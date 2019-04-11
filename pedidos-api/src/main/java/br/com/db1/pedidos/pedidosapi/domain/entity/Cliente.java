@@ -33,24 +33,42 @@ public class Cliente {
 	
 	
 	
-	//CONSTRUCTOR
+	//CONSTRUTOR
 	public Cliente(String nome, String cpf) {
 		///VERIFICADORES
 		Checker.notNull(nome, "nome do cliente");
 		Checker.notNull(cpf, "cpf do cliente");
 		Checker.checkCpf(cpf);
-		///
 		
+		
+		this.id = id;
 		this.nome = nome;
 		this.cpf = cpf;
 		this.status = StatusCliente.ATIVO;
 	}
-	//
+
 	
 	
+	public void setNome(String nome) {
+		Checker.notNull(nome, "nome do cliente");
+		this.nome = nome;
+	}
 	
 	
-	//GETTERS
+	public void setCpf(String cpf) {
+		Checker.notNull(cpf, "cpf do cliente");
+		Checker.checkCpf(cpf);
+		this.cpf = cpf;
+		
+
+	}
+	
+	
+	public Long getId() {
+		return this.id;
+	}
+	
+	
 	public StatusCliente getStatus() {
 		return this.status;
 	}
@@ -62,6 +80,7 @@ public class Cliente {
 	public String getCpf() {
 		return this.cpf;
 	}
+	
 	//
 	
 	
@@ -78,6 +97,13 @@ public class Cliente {
 	
 	public boolean isAtivo() {
 		return StatusCliente.ATIVO.equals(this.status);
+	}
+
+
+
+	public void marcarComoExcluido() {
+		this.status = StatusCliente.EXCLUIDO;
+		
 	}
 	
 }

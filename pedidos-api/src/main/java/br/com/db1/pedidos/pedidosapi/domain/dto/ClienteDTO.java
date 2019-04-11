@@ -2,22 +2,29 @@ package br.com.db1.pedidos.pedidosapi.domain.dto;
 
 import java.util.Objects;
 
-public class ClienteDTO {
+import br.com.db1.pedidos.pedidosapi.domain.entity.StatusCliente;
 
+public class ClienteDTO {
+	private Long id;
 	private String nome;
 	private String cpf;
+	private StatusCliente status;
 	
 	
-	public ClienteDTO(String nome, String cpf) {
+	public ClienteDTO(Long id, String nome, String cpf, StatusCliente status) {
+		this.id = id;
 		this.nome = nome;
 		this.cpf = cpf;
-	}
+		this.status = status;
+		}
+
 
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(cpf, nome);
+		return Objects.hash(id, cpf, nome, status);
 	}
+
 
 
 	@Override
@@ -32,9 +39,14 @@ public class ClienteDTO {
 			return false;
 		}
 		ClienteDTO other = (ClienteDTO) obj;
-		return Objects.equals(cpf, other.cpf) && Objects.equals(nome, other.nome);
+		return Objects.equals(cpf, other.cpf) && Objects.equals(nome, other.nome) && status == other.status;
 	}
 
+	public Long getId() {
+		return id;
+		
+
+	}
 
 	public String getNome() {
 		return nome;
@@ -53,6 +65,17 @@ public class ClienteDTO {
 
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
+	}
+	
+
+	public StatusCliente getStatus() {
+		return status;
+	}
+
+
+
+	public void setStatus(StatusCliente status) {
+		this.status = status;
 	}
 	
 	
