@@ -82,9 +82,9 @@ public class ClienteService {
 		
 	}
 	public void delete(Long id) {
-	Cliente clienteDatabase = clienteRepository.getOne(id);
-	clienteDatabase.marcarComoExcluido();
-	clienteRepository.save(clienteDatabase);
+		Cliente clienteDatabase = clienteRepository.getOne(id);
+		clienteDatabase.marcarComoExcluido();
+		clienteRepository.save(clienteDatabase);
 	}
 
 	}
