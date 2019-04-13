@@ -1,13 +1,11 @@
 package br.com.db1.pedidos.pedidosapi.resource;
 
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import br.com.db1.pedidos.pedidosapi.domain.dto.PedidoDTO;
 import br.com.db1.pedidos.pedidosapi.service.PedidoService;
 
@@ -26,7 +24,6 @@ public class PedidoResource {
 		System.out.println(body);
 		return body;
 	}
-	
 	
 
 }

@@ -2,22 +2,24 @@ package br.com.db1.pedidos.pedidosapi.domain.dto;
 
 import java.util.Objects;
 
+import br.com.db1.pedidos.pedidosapi.domain.entity.ProdutoStatus;
+
 public class ProdutoDTO {
 	
-//	public static final long serialVersionUID = 23L;
-
 	private String codigo;
 	private String nome;
 	private Double valor;
+	private ProdutoStatus status;
 	
 	public ProdutoDTO() {
 		super();
 	}
 
-	public ProdutoDTO(String codigo, String nome, Double valor) {
+	public ProdutoDTO(String codigo, String nome, Double valor, ProdutoStatus status) {
 		this.codigo = codigo;
 		this.nome = nome;
 		this.valor = valor;
+		this.status = status;
 	}
  
 	
@@ -25,7 +27,7 @@ public class ProdutoDTO {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(codigo, nome, valor);
+		return Objects.hash(codigo, nome, valor, status);
 	}
 
 	@Override
@@ -41,7 +43,7 @@ public class ProdutoDTO {
 		}
 		ProdutoDTO other = (ProdutoDTO) obj;
 		return Objects.equals(codigo, other.codigo) && Objects.equals(nome, other.nome)
-				&& Objects.equals(valor, other.valor);
+				&& Objects.equals(valor, other.valor) && status == other.status;
 	}
 
 	public String getCodigo() {
@@ -55,6 +57,10 @@ public class ProdutoDTO {
 	public String getNome() {
 		return nome;
 	}
+	
+	public ProdutoStatus getStatus() {
+		return status;
+	}
 
 	public void setNome(String nome) {
 		this.nome = nome;
@@ -66,6 +72,10 @@ public class ProdutoDTO {
 
 	public void setValor(Double valor) {
 		this.valor = valor;
+	}
+	
+	public void setStatus (ProdutoStatus status) {
+		this.status = status;
 	}
 	
 	

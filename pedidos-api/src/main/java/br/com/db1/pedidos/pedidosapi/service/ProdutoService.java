@@ -7,9 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.db1.pedidos.pedidosapi.domain.dto.ClienteDTO;
 import br.com.db1.pedidos.pedidosapi.domain.dto.ProdutoDTO;
-import br.com.db1.pedidos.pedidosapi.domain.entity.Cliente;
 import br.com.db1.pedidos.pedidosapi.domain.entity.Produto;
 import br.com.db1.pedidos.pedidosapi.domain.entity.ProdutoStatus;
 import br.com.db1.pedidos.pedidosapi.repository.ProdutoRepository;
@@ -28,7 +26,7 @@ public class ProdutoService {
 		List<ProdutoDTO> produtos = new ArrayList<>();
 		while(iterator.hasNext()) {
 			Produto next = iterator.next();
-			ProdutoDTO produtoDTO = new ProdutoDTO(next.getCodigo(), next.getNome(), next.getValor());
+			ProdutoDTO produtoDTO = new ProdutoDTO(next.getCodigo(), next.getNome(), next.getValor(), next.getStatus());
 			produtos.add(produtoDTO);
 		}
 		return produtos;
@@ -41,7 +39,22 @@ public class ProdutoService {
 	}
 	
 	private ProdutoDTO produtoToDto (Produto produto) {
-		return new ProdutoDTO(produto.getCodigo(), produto.getNome(), produto.getValor());
+		return new ProdutoDTO(produto.getCodigo(), produto.getNome(), produto.getValor(), produto.getStatus());
+	}
+	
+	public ProdutoDTO alterar(Long id, ProdutoDTO body) {
+		Produto produtoDatabase = produtoRepository.getOne(id);
+		produtoDatabase.setCodigo(body.getCodigo());
+		produtoDatabase.setNome(body.getNome());
+		produtoDatabase.setValor(body.getValor());
+		produtoRepository.save(produtoDatabase);
+		return this.produtoToDto(produtoDatabase);
+	}
+	
+	public void delete(Long id) {
+		Produto produtoDatabase = produtoRepository.getOne(id);
+		produtoDatabase.marcarComoExcluido();
+		produtoRepository.save(produtoDatabase);
 	}
 	
 }

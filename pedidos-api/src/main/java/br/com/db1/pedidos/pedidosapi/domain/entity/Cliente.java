@@ -33,7 +33,7 @@ public class Cliente {
 	
 	
 	
-	//CONSTRUTOR
+
 	public Cliente(String nome, String cpf) {
 		///VERIFICADORES
 		Checker.notNull(nome, "nome do cliente");
@@ -81,7 +81,7 @@ public class Cliente {
 		return this.cpf;
 	}
 	
-	//
+	
 	
 	
 	public void inativar() {

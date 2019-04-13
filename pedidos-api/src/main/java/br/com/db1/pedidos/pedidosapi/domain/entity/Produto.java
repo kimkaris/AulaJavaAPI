@@ -36,13 +36,13 @@ public class Produto {
 	protected Produto() {}
 	
 	
-	//CONSTRUCTOR
+
 	public Produto(String codigo, String nome, Double valor) {
-		//VERIFICADORES
+		
 		Checker.notNull(nome, "nome do produto");
 		Checker.notNull(codigo, "código do produto");
 		Checker.notNull(valor, "valor do produto");
-		//
+		
 		
 		this.codigo = codigo;
 		this.nome = nome;
@@ -53,7 +53,7 @@ public class Produto {
 	
 	
 	
-	//GETTERS
+
 	
 	public Long getId() {
 		return this.id;
@@ -74,11 +74,32 @@ public class Produto {
 	public ProdutoStatus getStatus() {
 		return this.status;
 	}
-	//
 	
-	
-	
-	
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
+	}
+
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+
+	public void setValor(Double valor) {
+		this.valor = valor;
+	}
+
+
+	public void setStatus(ProdutoStatus status) {
+		this.status = status;
+	}
+
+
 	public void inativar() {
 		if (!ProdutoStatus.ATIVO.equals(this.status)) {
 			throw new RuntimeException("Produto está " + this.status);
@@ -91,7 +112,9 @@ public class Produto {
 		return ProdutoStatus.ATIVO.equals(this.status);
 	}
 	
-	
+	public void marcarComoExcluido() {
+		this.status = ProdutoStatus.EXCLUIDO;
+	}
 	
 	
 }
